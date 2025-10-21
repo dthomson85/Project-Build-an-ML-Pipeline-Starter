@@ -84,6 +84,36 @@ def test_similar_neigh_distrib(data: pd.DataFrame, ref_data: pd.DataFrame, kl_th
     assert np.isfinite(kl_div) and kl_div < kl_threshold
 
 
-########################################################
-# Implement here test_row_count and test_price_range   #
-########################################################
+def test_row_count(data: pd.DataFrame) -> None:
+    """
+    Test that the dataset has a reasonable number of rows (not too few after cleaning).
+    We expect at least 1000 rows to have a meaningful dataset.
+    
+    Args:
+        data: Input DataFrame to test
+        
+    Raises:
+        AssertionError: If the dataset has too few rows
+    """
+    assert len(data) > 1000, f"Dataset has only {len(data)} rows, expected > 1000"
+
+# My added functions here:
+def test_price_range(data: pd.DataFrame, min_price: float, max_price: float) -> None:
+    """
+    Test that all prices are within the expected range (min_price to max_price).
+    This ensures the cleaning step properly filtered outliers.
+    
+    Args:
+        data: Input DataFrame to test
+        min_price: Minimum acceptable price
+        max_price: Maximum acceptable price
+        
+    Raises:
+        AssertionError: If any prices are outside the valid range
+    """
+    # Check that all prices are within the valid range
+    assert data['price'].between(min_price, max_price).all(), \
+        f"Found prices outside range [{min_price}, {max_price}]"
+    
+    # Also verify no negative or zero prices slipped through
+    assert (data['price'] > 0).all(), "Found non-positive prices in the dataset"
