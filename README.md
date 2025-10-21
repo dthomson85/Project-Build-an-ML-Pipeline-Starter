@@ -1,3 +1,21 @@
+# Submission Links
+
+- **GitHub Repository**: https://github.com/dthomson85/Project-Build-an-ML-Pipeline-Starter
+- **W&B Project**: https://wandb.ai/dthomson3-western-governors-university/nyc_airbnb
+
+# Release Notes
+
+## v1.0.0
+Initial production release with optimized Random Forest model.
+
+**Note on Geographic Filtering**: The instructions anticipated that `sample2.csv` would fail the `test_proper_boundaries` test, requiring a v1.0.1 fix. However, geographic boundary filtering (latitude: 40.5-41.2, longitude: -74.25 to -73.50) was proactively implemented during the EDA phase in `src/basic_cleaning/run.py`, so both sample1.csv and sample2.csv process successfully from v1.0.0.
+
+---
+
+
+
+
+
 # Build an ML Pipeline for Short-Term Rental Prices in NYC
 You are working for a property management company renting rooms and properties for short periods of 
 time on various rental platforms. You need to estimate the typical price for a given property based 
